@@ -1,0 +1,8 @@
+1. 아시아나항공 직항 (인천 -> 뉴욕)
+   - 출발: 09:50 ICN, 도착: 09:40 JFK
+   - 소요 시간: 13시간 50분
+   - 귀국: 11:30 JFK, 도착: 17:25 ICN
+   - 소요 시간: 15시간 55분
+   - 왕복 요금: 1,776,600원
+   - 일반 링크: (https://flight.naver.com/flights/international/ICN-JFK-20231201/JFK-ICN-20231207?adult=1&fareType=Y)
+   - 이미지 링크: (https://us.123rf.com/450wm/06photo/06photo1410/06photo141000948/32641066-%ED%95%98%EB%8A%98%EC%97%90-%EB%B9%84%ED%96%89%EA%B8%B0.jpg)

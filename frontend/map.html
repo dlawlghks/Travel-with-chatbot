@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps API 예제</title>
+    <style>
+        #map-container {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        #map {
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <label for="locationInput">위치 입력:</label>
+    <input type="text" id="locationInput" placeholder="예: 서울, 부산, Tokyo">
+    <button onclick="updateMap()">마커 표시</button>
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+
+    <script>
+        const apiKey = 'AIzaSyCo3FbB9a0s3B2NxNVK00boLXy_h7313nk';  // 여기에 자신의 Google Maps API 키를 입력하세요.
+        const markers = [];
+        let map;
+        let polyline;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 0, lng: 0 },
+                zoom: 2
+            });
+
+            polyline = new google.maps.Polyline({
+                map: map,
+                path: [],
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+        }
+
+        function addMarker(location, order) {
+            const marker = new google.maps.Marker({
+                position: location.geometry.location,
+                map: map,
+                title: location.formatted_address,
+                label: order.toString(),  // 마커에 순서를 표시
+                icon: getMarkerIcon(order),
+            });
+
+            markers.push(marker);
+
+            const infowindow = new google.maps.InfoWindow({
+                content: location.formatted_address
+            });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+
+            updatePolyline();
+        }
+
+        function updatePolyline() {
+            const path = markers.map(marker => marker.getPosition());
+            polyline.setPath(path);
+        }
+
+        function updateMarker(newLocation, order) {
+            addMarker(newLocation, order);
+
+            // 모든 마커에 대한 경계를 계산하여 지도를 조정
+            const bounds = new google.maps.LatLngBounds();
+            markers.forEach(marker => {
+                bounds.extend(marker.getPosition());
+            });
+            map.fitBounds(bounds);
+
+            // Directions API를 사용하여 마커 간의 대중교통 경로 및 소요 시간을 가져옴
+            if (markers.length > 1) {
+                const directionsService = new google.maps.DirectionsService();
+                const directionsDisplay = new google.maps.DirectionsRenderer();
+                directionsDisplay.setMap(map);
+
+                const origin = markers[markers.length - 2].getPosition();
+                const destination = markers[markers.length - 1].getPosition();
+
+                const request = {
+                    origin: origin,
+                    destination: destination,
+                    travelMode: google.maps.TravelMode.TRANSIT
+                };
+
+                directionsService.route(request, function(response, status) {
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                    } else {
+                        alert('대중교통 경로를 찾을 수 없습니다.');
+                    }
+                });
+            }
+        }
+
+        function getMarkerIcon(order) {
+            // Customize marker colors to pastel tones
+            const colors = ['#FFC3A0', '#FFAFBD', '#FFC3A0', '#FFD8B1', '#C1E1C1', '#B2C8FF'];
+            const colorIndex = order % colors.length;
+            return {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: colors[colorIndex],
+                fillOpacity: 1,
+                strokeColor: '#FFFFFF',
+                strokeWeight: 2,
+                scale: 10,
+                label: order.toString(),
+            };
+        }
+
+        window.updateMap = function () {
+            const locationInput = document.getElementById('locationInput').value;
+
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: locationInput, region: 'kr' }, (results, status) => {
+                if (status === 'OK' && results[0]) {
+                    const newLocation = results[0];
+                    updateMarker(newLocation, markers.length + 1);
+                } else {
+                    alert('장소를 찾을 수 없습니다.');
+                }
+            });
+        };
+
+        function loadScript() {
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap&language=en&libraries=places`;
+            script.defer = true;
+            script.async = true;
+            document.head.appendChild(script);
+        }
+
+        window.onload = loadScript;
+    </script>
+</body>
+</html>

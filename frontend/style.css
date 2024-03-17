@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Gothic+A1:wght@600&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Noto+Sans+KR:wght@600&family=Sunflower:wght@500&display=swap');
+/* 기본 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: flex-start; /* 상단 정렬 */
+    height: 100vh; /* 높이를 화면 높이에 맞춤 */
+    width: 100vw; /* 너비를 화면 너비에 맞춤 */
+}
+/* 로고 */
+.top-container {
+    display: flex; /* Flex 컨테이너 설정 */
+    justify-content: flex-start; /* 요소들을 양쪽 끝으로 정렬 */
+    align-items: center; /* 요소들을 수직 중앙으로 정렬 */
+    padding: 10px; /* 상단 컨테이너의 패딩 설정 */
+    height: 60px; /* 로고와 메뉴가 있는 컨테이너의 높이를 설정합니다. */
+    /* 필요한 경우 여기에 추가 스타일을 적용하세요. */
+}
+.top-logo {
+    height: 50px;
+    width: auto;
+    margin-right: 20px;
+}
+.trip-info {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-left: 150px;
+    /* 여기에 필요한 추가 스타일을 적용할 수 있습니다. */
+}
+
+/* 시작 화면 스타일 */
+.start-screen {
+    text-align: center;
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px; /* 최대 너비 설정 */
+    margin: auto;
+}
+
+.start-screen h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5em; /* 제목 폰트 크기 */
+}
+
+.start-screen input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em; /* 입력 필드 폰트 크기 */
+}
+
+.start-chat-button {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #368ff3;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.start-chat-button:hover {
+    background-color: #2c7cd5;
+}
+
+
+/* 일정 컨테이너 스타일 */
+.schedule-container {
+    margin-left: 0; /* 기본적으로는 왼쪽 여백 없음 */
+    transition: margin-left 0.3s; /* 부드러운 전환 효과 */
+    display: flex; /* 컨테이너를 그리드 컨테이너로 만듭니다 */
+    flex-grow: 1; 
+    justify-content: space-around; /* 요소들 사이에 균일한 간격을 제공 */
+    align-items: stretch; 
+    gap: 10px;  
+    margin: 0 10px; /* 좌우 여백 조정 */
+}
+
+.map-container {
+    position: fixed;
+    bottom: 20px; /* 하단에서 20px 떨어진 위치에 설정 */
+    right: 20px; /* 오른쪽에서 20px 떨어진 위치에 설정 */
+    width: 300px; /* 지도의 너비 */
+    height: 300px; /* 지도의 높이 */
+    z-index: 1000; /* 다른 요소 위에 표시되도록 z-index 설정 */
+}
+/* 각 일차를 나타내는 요소 */
+.day {
+    background-color: #f1f1f1; /* 배경색 */
+    padding: 5px 10px; /* 안쪽 여백 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    cursor: pointer; /* 마우스 오버 시 커서 변경 */
+}  
+/* 메뉴바와 채팅창 사이에 위치하는 일차 탭들의 컨테이너 */
+.days-container {
+    padding: 10px 10px; /* 상단 및 하단 패딩 */
+    display: flex; /* 플렉스박스 사용 */
+    justify-content: space-around; /* 각 요소 사이에 균등한 공간을 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    margin: 0 20px; /* 메뉴바와 채팅창 사이의 마진 조정 */
+}
+.day-info-text {
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-around; /* 수평 중앙 정렬 */
+    min-height: 100px; /* 최소 높이 설정, 실제 내용에 맞게 조정 필요 */
+    padding: 0 10px;
+    margin-bottom: 10px; /* 요소 사이의 간격 조정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    
+}
+.day-schedule{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 100%; /* 또는 필요한 높이 */
+}
+
+.location-input-container {
+    display: flex;
+    justify-content: flex-end; /* 이 부분을 추가 */
+    align-items: center;
+    position: absolute;
+    bottom: 780px; 
+    right: 520px;
+}
+.day-selected .day-info-text {
+    transition: margin-right 0.3s; /* 부드러운 전환 효과 */
+}
+/* 개별 일차 탭 스타일 */
+.day-tab {
+    padding: 10px; /* 패딩 조정 */
+    /* 필요한 추가 스타일 */
+}
+.day:hover {
+    background-color: #eaeaea; /* 마우스 오버 시 배경색 변경 */
+}
+
+.day.active {
+    background-color: #007bff; /* 활성화된 일차의 배경색 */
+    color: white; /* 활성화된 일차의 글자색 */
+}
+
+.title {
+    background-color: #4CA2FF;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 15px 0;
+}
+
+/* 채팅 박스 스타일 */
+.chatbox {
+    display: flex;
+    flex-direction: column; /* 요소들을 세로로 쌓음 */
+    height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #eaeff2;
+}
+
+/* 입력 영역 스타일 */
+.input-area {
+    display: flex;
+    padding: 10px;
+}
+
+.user-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.send-button {
+    padding: 10px 15px;
+    background-color: #09e975f0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    background-color: #4cae4c;
+}
+
+/* 사용자 이름 입력 스타일 */
+.user-name {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin: 10px;
+}
+
+/* 채팅 메시지 스타일 */
+.message {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    max-width: 80%;
+}
+
+.user-message {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+}
+
+.bot-message {
+    background-color: #fff;
+    align-self: flex-start;
+}
+
+/* 입력 필드와 버튼에 호버 및 포커스 효과 */
+.user-input:focus, .send-button:hover {
+    border-color: #4a76a8;
+}
+.main-container {
+
+    display: flex; /* 플렉스박스 사용 */
+    justify-content: space-between; /* 양쪽 끝에 요소를 배치 */
+    align-items: flex-start; /* 상단 정렬 */
+    width: 100%; /* 전체 너비 사용 */
+    height: 100%; /* 전체 높이 사용 */
+    padding: 20px; /* 내부 여백 */
+    box-sizing: border-box; /* 패딩 포함하여 너비 계산 */
+    padding-top: 30px; /* 로고 높이보다 조금 더 큰 값으로 설정 */
+}
+
+/* 여행 정보 스타일 */
+.travel-info {
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* 요소들을 세로 중앙 정렬 */
+    background-color: #fffdfd; /* 배경색 설정 */
+    border-radius: 8px; /* 모서리 둥글게 설정 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 그림자 효과 추가 */
+    margin-bottom: 10px; /* 각 항목 사이의 여백 */
+    margin-left: 5px;
+    padding: 10px; /* 내부 패딩 */
+    width: 260px;
+}
+.travel-info, .map-container {
+    flex: 1; /* 각 요소가 동일한 공간을 차지하도록 설정 */
+}
+/* 텍스트 정보 스타일 */
+.text-info {
+    display: flex;
+    flex-direction: column; /* 요소들을 세로로 정렬 */
+    flex-grow: 1;
+    padding-right: 10px;
+    font-family: 'Arial', sans-serif; /* 이미지와의 간격 */
+}
+/* 시간, 장소 유형, 장소 이름, 링크 컨테이너 스타일 */
+.time, .place-type, .place-name, .link-container {
+    margin-bottom: 5px; /* 요소들 사이의 간격 */
+}
+/* 이미지 컨테이너 스타일 */
+.image-container {
+    flex-shrink: 0; /* 이미지 크기가 flex 컨테이너에 의해 줄어들지 않도록 설정 */
+    padding-left: 10px; /* 텍스트 정보와의 간격 */
+}
+
+/* 이미지 스타일 */
+.image-container img {
+    width: 100px; /* 이미지 너비 설정 */
+    height: auto; /* 이미지 높이를 자동으로 설정 */
+    border-radius: 4px; /* 이미지 모서리 둥글게 설정 */
+}
+
+.travel-info .link-container a {
+    text-decoration: none; /* Optional: remove underline from links */
+    color: #007bff; /* Optional: change the color of the link */
+    font-size: 0.8em; /* Optional: adjust the size of the link text */
+}
+/* 메뉴 바 스타일 */
+.menu-bar {
+    width: 100px; /* 메뉴바 너비 */
+    margin-right: 0px; /* 채팅 컨테이너와의 간격 */
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+/* 메뉴 아이템 스타일 */
+.menu-item {
+    font-family: 'Noto Sans KR', sans-serif;
+    height: 80px;
+    background-color: #ffffff;
+    border: 1px solid #d4d4d4;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px; /* 메뉴 아이템 간격 */
+    text-align: center;
+    color: #000000;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #eaeaea;
+}
+
+.menu-item.active {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+
+.change-destination-button {
+    padding: 10px 15px;
+    background-color: #f3be08;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.change-destination-button:hover {
+    background-color: #ec971f;
+}
+
+.link-button {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.link-button:hover {
+    background-color: #0056b3;
+}
+
+.travel-budget, .travel-duration {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+
+/* 채팅 컨테이너 스타일 */
+.chat-container {
+    font-family: 'Noto Sans KR', sans-serif;
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex-grow: 0;
+    margin-top: 20px; /* 상단 여백 */
+    z-index: 999;
+}
+
+/* 채팅 비용 계산 */
+.total-cost-display {
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1em;
+    color: #333;
+}
+
+.add-cost-button {
+    margin-top: 10px;
+    margin-left: 5px;
+    padding: 10px 15px;
+    width: 453px;
+    background-color: #f0ad4e;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-cost-button:hover {
+    background-color: #ec971f;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+    .main-container {
+        flex-direction: column; /* 모바일에서는 세로로 스택 */
+    }
+
+    .chat-container {
+        margin-left: 0; /* 모바일에서는 왼쪽 마진 제거 */
+        margin-top: 20px; /* 메뉴 바 아래로 간격 추가 */
+    }
+    .input-area {
+        flex-direction: column;
+    }
+
+    .user-input {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .send-button {
+        width: 100%;
+    }
+
+    .start-screen input, .start-chat-button {
+        width: 90%;
+    }
+    .day-schedule {
+        flex-direction: column;
+    }
+    .main-container{
+        flex-direction: column;
+    }
+    .schedule-container, .map-container {
+        width: 100%;
+    }
+}
+/* 채팅창 내 로딩 인디케이터 스타일 */
+#loadingIndicator {
+    display: none;
+    position: fixed; /* 또는 absolute, 화면 전체에 걸쳐 표시 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* 다른 모든 요소보다 높은 값 */
+    background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+    justify-content: center;
+    align-items: center;
+    
+}

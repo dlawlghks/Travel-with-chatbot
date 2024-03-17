@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>가장께</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="start-screen">
+            <img src="../img/가장께.png" alt="">
+            <h1>여행 정보를 입력해주세요!</h1>
+            <input type="text" id="userName" class="user-name" placeholder="이름 입력...">
+            <input type="text" id="travelDestination" class="travel-destination" placeholder="여행지역 입력...">
+            <input type="number" id="travelBudget" class="travel-budget" placeholder="총 예산 입력 (단위: 10만원)" step="100000">
+            <input type="text" id="travelDuration" class="travel-duration" placeholder="여행 일정 입력...">
+            <button onclick="startChat()" class="start-chat-button">서비스 시작</button>
+        </div>
+
+        <div class="top-container" style="display: none;">
+            <img src="../img/가장께.png" alt="" class="top-logo">
+        </div>
+        <!-- 메인 컨테이너 추가 -->
+        <div class="main-container" style="display: none;">
+            <!-- 메뉴바 컨테이너 -->
+            <div id="menuBar" class="menu-bar"></div>
+            <!-- 일정 컨테이너 -->
+            <div id="scheduleContainer" class="schedule-container">
+            <!-- 각 일차에 대한 정보가 들어갈 자리 -->
+            </div>
+            
+        
+            
+            <!-- 채팅 컨테이너 -->
+            <div class="chat-container">
+                <h1 class="title">가장께 ChatBot</h1>
+                <div id="chatbox" class="chatbox">
+                    <div id="loadingIndicator" style="display: none;">
+                        <p>로딩 중...</p>
+                    </div>
+                </div>
+                <div class="input-area">
+                    <input type="text" id="userInput" class="user-input" placeholder="메시지 입력...">
+                    <button onclick="sendMessage()" class="send-button">보내기</button>
+                </div>
+                <div id="totalCostDisplay" class="total-cost-display">현재 추가된 경비: 0원</div>
+                <button onclick="changeDestination()" class="change-destination-button">여행지역 변경하기</button>
+            </div>
+        </div>
+
+
+        <script src="script.js"></script>
+
+    </body>
+    </html>
